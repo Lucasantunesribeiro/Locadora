@@ -1,0 +1,143 @@
+/* Basic Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Body Styles */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f9f9f9;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* Header */
+.header {
+  background: linear-gradient(to right, #007bff, #0056b3);
+  color: #fff;
+  padding: 20px;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+
+.navbar {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar__title {
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+
+.navbar__menu {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+.navbar__link {
+  color: #fff;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.navbar__link:hover {
+  color: #cce5ff;
+}
+
+/* Main Content */
+.main-content {
+  margin-top: 80px; /* Adjusted for header height */
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px;
+  margin-top: 8em;
+}
+
+/* Content Sections */
+.user-info,
+.important-info {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 40px;
+  margin-bottom: 40px;
+}
+
+.user-info__greeting {
+  font-size: 1.8rem;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.user-info__email {
+  font-size: 1.2rem;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+.user-info__welcome {
+  font-size: 1rem;
+  color: #666;
+}
+
+.important-info__title {
+  font-size: 1.8rem;
+  color: #007bff;
+  margin-bottom: 20px;
+}
+
+.important-info__details {
+  font-size: 1rem;
+  color: #666;
+}
+
+/* Footer */
+.footer {
+  background: linear-gradient(to right, #007bff, #0056b3);
+  color: #fff;
+  text-align: center;
+  padding: 20px;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .navbar__menu {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .main-content {
+    padding: 20px;
+    margin-top: 60px; /* Adjusted for smaller header space */
+  }
+
+  .user-info,
+  .important-info {
+    padding: 20px;
+  }
+}
+
+
+.container_home{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}

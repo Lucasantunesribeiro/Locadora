@@ -1,0 +1,99 @@
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Corpo da página */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f2f5; /* Atualizado para combinar com o fundo da página */
+  color: #333;
+  padding: 20px; /* Adicionado padding para manter consistência com o estilo anterior */
+}
+
+/* Container principal */
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 30px; /* Atualizado para manter consistência com outros contêineres */
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1); /* Atualizado para combinar com o estilo geral */
+  margin-top: 2em;
+}
+
+/* Cabeçalho */
+h1 {
+  font-size: 2rem; /* Atualizado para manter consistência com outros títulos */
+  color: #003366; /* Atualizado para combinar com a paleta de cores do estilo geral */
+  margin-bottom: 20px;
+}
+
+/* Formulário */
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  font-size: 1rem; /* Atualizado para manter consistência com outros labels */
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="date"] {
+  padding: 12px; /* Atualizado para manter consistência com outros campos de entrada */
+  margin-bottom: 15px;
+  border: 1px solid #ddd; /* Atualizado para combinar com a borda dos outros campos */
+  border-radius: 4px;
+  font-size: 1rem; /* Atualizado para manter consistência com outros campos de entrada */
+  transition: border-color 0.3s;
+}
+
+input[type="text"]:focus,
+input[type="date"]:focus {
+  border-color: #007bff; /* Atualizado para combinar com o estilo geral */
+  outline: none;
+}
+
+/* Botão */
+button {
+  padding: 12px 20px; /* Atualizado para manter consistência com outros botões */
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 1.1rem; /* Atualizado para manter consistência com outros botões */
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #0056b3; /* Atualizado para combinar com o estilo geral */
+}
+
+/* Link de navegação */
+.home {
+  margin-top: 20px;
+}
+
+.home a {
+  color: #007bff;
+  text-decoration: none;
+  font-weight: bold; /* Atualizado para manter consistência com outros links */
+}
+
+.home a:hover {
+  text-decoration: underline;
+}
+
+/* Mensagens de erro */
+.error {
+  color: red;
+  font-size: 1rem; /* Atualizado para manter consistência com outras mensagens de erro */
+  margin-top: 10px;
+}

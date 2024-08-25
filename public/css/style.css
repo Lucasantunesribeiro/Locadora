@@ -1,0 +1,538 @@
+/* Estilo geral do corpo */
+.login-body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f2f5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+/* Contêiner principal de login */
+.login-container {
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Título da página de login */
+.login-title {
+  text-align: center;
+  font-size: 2.5rem;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+/* Estilo do formulário de login */
+.login-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Estilo dos campos de entrada */
+.login-input {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+  transition: border-color 0.3s;
+}
+
+/* Efeito de foco nos campos de entrada */
+.login-input:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+/* Estilo do botão de submissão */
+.login-button {
+  width: 100%;
+  padding: 12px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-top: 10px;
+}
+
+/* Efeito de hover no botão de submissão */
+.login-button:hover {
+  background-color: #0056b3;
+}
+
+
+/* Estilo geral do corpo para a página de cadastro de usuário */
+.create-user-body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f2f5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+/* Contêiner principal de cadastro de usuário */
+.create-user-container {
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Título da página de cadastro de usuário */
+.create-user-title {
+  text-align: center;
+  font-size: 2.5rem;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+/* Estilo do formulário de cadastro de usuário */
+.create-user-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Estilo dos grupos de formulário */
+.form-group {
+  margin-bottom: 15px;
+}
+
+/* Estilo das etiquetas do formulário */
+.form-label {
+  font-size: 1rem;
+  color: #333;
+  margin-bottom: 5px;
+  display: block;
+}
+
+/* Estilo dos campos de entrada */
+.form-input {
+  width: 100%;
+  padding: 10px;
+  margin: 5px 0;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+  transition: border-color 0.3s;
+}
+
+/* Efeito de foco nos campos de entrada */
+.form-input:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+/* Estilo do botão de submissão */
+.create-user-button {
+  width: 100%;
+  padding: 12px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-top: 10px;
+}
+
+/* Efeito de hover no botão de submissão */
+.create-user-button:hover {
+  background-color: #0056b3;
+}
+
+
+/* Estilos Globais */
+body {
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #f7f9fa;
+  /* Fundo cinza claro */
+  color: #333;
+  /* Cor do texto padrão */
+}
+
+/* Cabeçalho */
+header {
+  background: linear-gradient(90deg, #003366, #0056b3);
+  /* Gradiente azul */
+  color: #fff;
+  /* Cor do texto do cabeçalho */
+  padding: 15px 20px;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  /* Sombra do cabeçalho */
+  z-index: 1000;
+}
+
+.header__title {
+  margin: 0;
+  font-size: 2em;
+  font-weight: 500;
+}
+
+/* Navegação */
+.navbar {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.navbar__menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.navbar__item {
+  margin: 0 15px;
+}
+
+.navbar__link {
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s;
+}
+
+.navbar__link:hover {
+  color: #d0e0f0;
+  /* Azul claro ao passar o mouse */
+}
+
+/* Conteúdo Principal */
+main {
+  padding: 160px 20px 20px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.section {
+  background: #fff;
+  /* Fundo branco para as seções */
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  /* Sombra das seções */
+  padding: 20px;
+  margin-bottom: 30px;
+  margin-top: 5em;
+  /* Separação adicional para o topo */
+}
+
+.section__title {
+  margin-top: 0;
+  color: #007bff;
+  /* Azul para os títulos das seções */
+}
+
+.section__content {
+  color: #555;
+  /* Cor do texto das seções */
+  margin: 10px 0;
+}
+
+/* Rodapé */
+footer {
+  background: #003366;
+  /* Fundo do rodapé */
+  color: #fff;
+  /* Cor do texto do rodapé */
+  text-align: center;
+  padding: 15px;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
+  /* Sombra do rodapé */
+}
+
+/* Título da Home */
+.title_Home {
+  margin: 0;
+  font-size: 2em;
+  font-weight: bold;
+  text-align: center;
+  color: #fff;
+  /* Mantendo a cor branca do título */
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .navbar__menu {
+    flex-direction: column;
+    margin-top: 10px;
+  }
+
+  .navbar__item {
+    margin: 10px 0;
+  }
+
+  main {
+    padding-top: 100px;
+    /* Ajuste para cabeçalho fixo */
+  }
+}
+
+
+/* Estilo geral da página */
+body {
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #f7f9fa;
+  color: #333;
+}
+
+h1 {
+  text-align: center;
+  color: #003366;
+  margin-top: 20px;
+}
+
+/* Estilo do formulário */
+form {
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+form label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #0056b3;
+}
+
+form input[type="text"],
+form input[type="number"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+form input[type="text"]:focus,
+form input[type="number"]:focus {
+  border-color: #0056b3;
+  outline: none;
+}
+
+form button {
+  background: #003366;
+  color: #fff;
+  border: none;
+  padding: 15px 20px;
+  font-size: 1em;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background 0.3s;
+}
+
+form button:hover {
+  background: #0056b3;
+}
+
+form p {
+  text-align: center;
+  color: red;
+}
+
+.btn-voltar {
+  display: block;
+  text-align: center;
+  margin-top: 20px;
+  background-color: #333;
+  color: #fff;
+  padding: 10px;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+
+.container-detalhar {
+  padding-top: 10em;
+}
+
+
+/* Reset básico para garantir que todos os elementos sejam renderizados de maneira consistente */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Estilo geral da página */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  color: #333;
+  padding: 20px;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  color: #007bff;
+  margin-bottom: 20px;
+}
+
+/* Estilo do formulário */
+form {
+  margin-bottom: 20px;
+}
+
+fieldset {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  background: #f9f9f9;
+}
+
+legend {
+  font-weight: bold;
+  color: #007bff;
+  padding: 0 10px;
+}
+
+label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+input[type="text"],
+select {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+input[type="checkbox"] {
+  margin-right: 10px;
+}
+
+button {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  background-color: #007bff;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+/* Estilo da tabela */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+th, td {
+  padding: 12px;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+th {
+  background-color: #007bff;
+  color: #fff;
+}
+
+tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+/* Estilo da paginação */
+.pagination {
+  margin-top: 20px;
+}
+
+.pagination a {
+  display: inline-block;
+  padding: 8px 12px;
+  margin: 0 4px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  text-decoration: none;
+  color: #007bff;
+}
+
+.pagination a.active {
+  background-color: #007bff;
+  color: #fff;
+  border: 1px solid #007bff;
+}
+
+.pagination a:hover {
+  background-color: #e9ecef;
+  color: #0056b3;
+}
+
+/* Estilo do botão voltar */
+.btn-voltar {
+  display: inline-block;
+  padding: 10px 15px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: #007bff;
+  color: #fff;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+.btn-voltar:hover {
+  background-color: #0056b3;
+}
+
+
+.container-deletar{
+  padding-top: 10em;
+}

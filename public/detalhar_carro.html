@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhar Carro</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <header>
+        <h1>Detalhar Carro</h1>
+    </header>
+    <div class="container-detalhar">
+        <div class="container">
+            <form id="detalharCarroForm">
+                <label for="carro_id">ID do Carro:</label>
+                <input type="number" id="carro_id" name="carro_id" required>
+                <button type="button" id="detalharCarroBtn">Detalhar</button>
+            </form>
+            <div id="carroDetalhes">
+                <!-- Detalhes do carro serão carregados aqui -->
+            </div>
+        </div>
+    </div>
+    <script src="js/detalhar_carro.js"></script>
+</body>
+
+</html>
