@@ -20,11 +20,11 @@ document.getElementById('create-user-form').addEventListener('submit', function(
     .then(data => {
         if (data.status === 'success') {
             alert(data.message); // Exibir mensagem de sucesso
-            window.location.href = '/locadora_de_carros/public/login.html'; // Redirecionar para a página de login
+            window.location.href = '/locadora_de_carros/src/views/login.html'; // Redirecionar para a página de login
         } else {
             alert(data.message); // Exibir mensagem de erro
             if (data.message === 'Este email já está cadastrado.') {
-                window.location.href = '/locadora_de_carros/public/login.html'; // Redirecionar para login se o email já estiver cadastrado
+                window.location.href = '/locadora_de_carros/src/views/login.html'; // Redirecionar para login se o email já estiver cadastrado
             }
         }
     })

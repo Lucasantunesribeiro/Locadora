@@ -3,19 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Resultado</title>
-    <link rel="stylesheet" href="css/style.css">
+    <title>Acesso Negado</title>
+    <link rel="stylesheet" href="/locadora_de_carros/public/css/style.css">
 </head>
 <body>
     <header>
-        <h1>Resultado</h1>
+        <h1>Acesso Negado</h1>
     </header>
     <div class="container">
-        <?php
-        $message = $_GET['message'] ?? 'Nenhuma mensagem';
-        $type = $_GET['type'] ?? 'info';
-        echo "<p class=\"$type\">$message</p>";
-        ?>
+        <p>Você não tem permissão para acessar esta página.</p>
         <a href="index.html">Voltar para a página inicial</a>
     </div>
 </body>

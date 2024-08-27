@@ -1,28 +1,36 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Listagem de Carros</title>
-    <link rel="stylesheet" href="css/style.css"> <!-- Assumindo que a estilização foi movida para um arquivo CSS separado -->
+    <link rel="stylesheet" href="/locadora_de_carros/public/css/style.css">
+    <!-- Assumindo que a estilização foi movida para um arquivo CSS separado -->
 </head>
+
 <body>
     <div class="container">
-        <h1>Listagem de Carros</h1>
+        <header>
+            <h1 class="container_titulo">Listagem de Carros</h1>
+        </header>
+
 
         <!-- Filtro -->
-        <form id="carros-form" method="get" action="">
-            <fieldset>
+        <form id="carros-form" method="get" action="" class="container_listar-carro">
+            <fieldset class="container-fieldset">
                 <legend>Filtros e Paginação</legend>
                 <label for="filtro_marca">Marca:</label>
                 <input type="text" name="filtro_marca" id="filtro_marca"
                     value="<?php echo isset($_GET['filtro_marca']) ? htmlspecialchars($_GET['filtro_marca']) : ''; ?>"><br>
-                <label>
-                    <input type="checkbox" name="use_filter" value="1" <?php echo isset($_GET['use_filter']) ? 'checked' : ''; ?>> Ativar Filtro
-                </label>
-                <label>
-                    <input type="checkbox" name="use_pagination" id="use_pagination" value="1" <?php echo isset($_GET['use_pagination']) ? 'checked' : ''; ?>> Ativar Paginação
-                </label><br>
+                    <div class="checkbox-container">
+    <input type="checkbox" name="use_filter" value="1" id="use_filter" <?php echo isset($_GET['use_filter']) ? 'checked' : ''; ?>>
+    <label for="use_filter">Ativar Filtro</label>
+</div>
+<div class="checkbox-container">
+    <input type="checkbox" name="use_pagination" id="use_pagination" value="1" <?php echo isset($_GET['use_pagination']) ? 'checked' : ''; ?>>
+    <label for="use_pagination">Ativar Paginação</label>
+</div><br>
                 <label for="ordenar_por">Ordenar por:</label>
                 <select name="ordenar_por" id="ordenar_por">
                     <option value="alfabetica" <?php echo (isset($_GET['ordenar_por']) && $_GET['ordenar_por'] === 'alfabetica') ? 'selected' : ''; ?>>Alfabética</option>
@@ -49,12 +57,16 @@
 
                 <input type="hidden" name="pagina"
                     value="<?php echo isset($_GET['pagina']) ? htmlspecialchars($_GET['pagina']) : '1'; ?>">
-                <button type="submit">Aplicar</button>
+                <button type="submit" class="btn-criar">Aplicar</button>
+                <div>
+            <a href="home.php" class="btn-voltar">Voltar</a>
+        </div>
             </fieldset>
+            
         </form>
 
         <!-- Exibição dos Carros -->
-        <table id="carros-table">
+        <table id="carros-table" class="carros-table">
             <thead>
                 <tr>
                     <th>Modelo</th>
@@ -70,18 +82,18 @@
             <tbody>
                 <!-- As linhas da tabela serão inseridas dinamicamente pelo JavaScript -->
             </tbody>
+            
         </table>
-
-        <div>
-            <a href="index.php" class="btn-voltar">Voltar</a>
-        </div>
+        
+        
 
         <!-- Paginação -->
         <div id="pagination" class="pagination">
             <!-- Links de paginação serão inseridos dinamicamente pelo JavaScript -->
         </div>
 
-        <script src="js/listar_carro.js"></script>
+        <script src="/locadora_de_carros/public/js/listar_carro.js"></script>
     </div>
 </body>
+
 </html>

@@ -14,74 +14,88 @@ $query = "SELECT * FROM carros";
 $params = [];
 
 $marcas = [
-    'Chevrolet' => ['Chevrolet', 'Chevy'],
-    'Fiat' => ['Fiat'],
-    'Ford' => ['Ford'],
-    'Volkswagen' => ['Volkswagen', 'VW'],
-    'Renault' => ['Renault'],
-    'Toyota' => ['Toyota'],
-    'Hyundai' => ['Hyundai'],
-    'Honda' => ['Honda'],
-    'Jeep' => ['Jeep'],
-    'Nissan' => ['Nissan'],
-    'Peugeot' => ['Peugeot'],
-    'Citroën' => ['Citroën', 'Citroen'],
-    'Mitsubishi' => ['Mitsubishi'],
-    'Mercedes-Benz' => ['Mercedes-Benz', 'Mercedes', 'Benz'],
-    'BMW' => ['BMW'],
-    'Audi' => ['Audi'],
-    'Volvo' => ['Volvo'],
-    'Kia' => ['Kia'],
-    'Land Rover' => ['Land Rover', 'LandRover'],
-    'Suzuki' => ['Suzuki'],
-    'Subaru' => ['Subaru'],
-    'Chery' => ['Chery'],
-    'JAC' => ['JAC'],
-    'Lifan' => ['Lifan'],
-    'Troller' => ['Troller'],
-    'Agrale' => ['Agrale'],
-    'Aston Martin' => ['Aston Martin', 'Aston', 'Martin'],
-    'Bentley' => ['Bentley'],
-    'Bugatti' => ['Bugatti'],
-    'Chrysler' => ['Chrysler'],
-    'Dodge' => ['Dodge'],
-    'Ferrari' => ['Ferrari'],
-    'Lamborghini' => ['Lamborghini', 'Lambo'],
-    'Maserati' => ['Maserati'],
-    'McLaren' => ['McLaren'],
-    'Porsche' => ['Porsche', 'Porche', 'Porshe'], 
-    'Rolls-Royce' => ['Rolls-Royce', 'Rolls', 'Royce'],
-    'Tesla' => ['Tesla'],
-    'Alfa Romeo' => ['Alfa Romeo', 'Alfa', 'Romeo']
+    'Chevrolet' => ['Chevrolet', 'Chevy', 'Chevy Truck', 'Chevy Car'],
+    'Fiat' => ['Fiat', 'Fiat Car'],
+    'Ford' => ['Ford', 'Ford Truck', 'Ford Car', 'Ford Mustang'],
+    'Volkswagen' => ['Volkswagen', 'VW', 'Volkswagen Car'],
+    'Renault' => ['Renault', 'Renault Car'],
+    'Toyota' => ['Toyota', 'Toyota Car', 'Toyota Truck'],
+    'Hyundai' => ['Hyundai', 'Hyundai Car'],
+    'Honda' => ['Honda', 'Honda Car', 'Honda Civic', 'Honda Accord'],
+    'Jeep' => ['Jeep', 'Jeep SUV', 'Jeep Wrangler'],
+    'Nissan' => ['Nissan', 'Nissan Car', 'Nissan Truck'],
+    'Peugeot' => ['Peugeot', 'Peugeot Car'],
+    'Citroën' => ['Citroën', 'Citroen', 'Citroen Car'],
+    'Mitsubishi' => ['Mitsubishi', 'Mitsubishi Car'],
+    'Mercedes-Benz' => ['Mercedes-Benz', 'Mercedes', 'Benz', 'Mercedes Car'],
+    'BMW' => ['BMW', 'Bimmer', 'BM', 'BMW Car', 'BMW SUV'],
+    'Audi' => ['Audi', 'Audi Car'],
+    'Volvo' => ['Volvo', 'Volvo Car', 'Volvo SUV'],
+    'Kia' => ['Kia', 'Kia Car'],
+    'Land Rover' => ['Land Rover', 'LandRover', 'Land Rover SUV'],
+    'Suzuki' => ['Suzuki', 'Suzuki Car'],
+    'Subaru' => ['Subaru', 'Subaru Car', 'Subaru SUV'],
+    'Chery' => ['Chery', 'Chery Car'],
+    'JAC' => ['JAC', 'JAC Car'],
+    'Lifan' => ['Lifan', 'Lifan Car'],
+    'Troller' => ['Troller', 'Troller SUV'],
+    'Agrale' => ['Agrale', 'Agrale Truck'],
+    'Aston Martin' => ['Aston Martin', 'Aston', 'Martin', 'Aston Martin Car'],
+    'Bentley' => ['Bentley', 'Bentley Car'],
+    'Bugatti' => ['Bugatti', 'Bugatti Car'],
+    'Chrysler' => ['Chrysler', 'Chrysler Car'],
+    'Dodge' => ['Dodge', 'Dodge Car', 'Dodge Truck'],
+    'Ferrari' => ['Ferrari', 'Ferrari Car'],
+    'Lamborghini' => ['Lamborghini', 'Lambo', 'Lambo Car'],
+    'Maserati' => ['Maserati', 'Maserati Car'],
+    'McLaren' => ['McLaren', 'McLaren Car'],
+    'Porsche' => ['Porsche', 'Porche', 'Porshe', 'Porsche Car'],
+    'Rolls-Royce' => ['Rolls-Royce', 'Rolls', 'Royce', 'Rolls-Royce Car'],
+    'Tesla' => ['Tesla', 'Tesla Car'],
+    'Alfa Romeo' => ['Alfa Romeo', 'Alfa', 'Romeo', 'Alfa Romeo Car'],
+    'Jaguar' => ['Jaguar', 'Jaguar Car', 'Jaguar SUV'],
+    'Buick' => ['Buick', 'Buick Car'],
+    'Changan' => ['Changan', 'Changan Car'],
+    'Geely' => ['Geely', 'Geely Car'],
+    'Great Wall' => ['Great Wall', 'Great Wall Car'],
+    'Lexus' => ['Lexus', 'Lexus Car'],
+    'Mini' => ['Mini', 'Mini Car'],
+    'Rover' => ['Rover', 'Rover Car'],
+    'Scion' => ['Scion', 'Scion Car'],
+    'Saab' => ['Saab', 'Saab Car'],
+    'Smart' => ['Smart', 'Smart Car'],
+    'Alpina' => ['Alpina', 'Alpina Car'],
+    'Pagani' => ['Pagani', 'Pagani Car'],
+    'Koenigsegg' => ['Koenigsegg', 'Koenigsegg Car'],
+    'Daihatsu' => ['Daihatsu', 'Daihatsu Car']
 ];
 
 if ($useFilter) {
     $filtroMarca = isset($_GET['filtro_marca']) ? trim($_GET['filtro_marca']) : '';
     
     if ($filtroMarca) {
-        // Normalizar a entrada do usuário
         $filtroMarcaNormalizado = strtolower(trim($filtroMarca));
         
         $marcaEncontrada = false;
+        $marcaFiltro = '';
         foreach ($marcas as $marca => $sinonimos) {
             foreach ($sinonimos as $sinonimo) {
                 if (strtolower($sinonimo) === $filtroMarcaNormalizado) {
                     $marcaEncontrada = true;
+                    $marcaFiltro = $marca; // Armazena a marca correta
                     break 2;
                 }
             }
         }
 
         if ($marcaEncontrada) {
-            $params[':filtroMarca'] = "%$filtroMarca%";
-            // Adicionar a condição ao SQL query
+            $params[':filtroMarca'] = "%$marcaFiltro%";
             if (strpos($query, 'WHERE') === false) {
                 $query .= " WHERE marca LIKE :filtroMarca";
             } else {
                 $query .= " AND marca LIKE :filtroMarca";
             }
         } else {
-            // Se não encontrar a marca, retorna uma lista vazia
             echo json_encode([
                 'carros' => [],
                 'totalPaginas' => 0
@@ -133,7 +147,6 @@ try {
     $stmt->execute();
     $carros = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-    // Se não houver carros, retorna uma lista vazia
     if (empty($carros)) {
         echo json_encode([
             'carros' => [],
@@ -142,12 +155,13 @@ try {
         exit;
     }
 
+    // Consulta para contar o total de carros
     $totalCarrosQuery = "SELECT COUNT(*) FROM carros";
     $totalCarrosParams = [];
 
     if ($useFilter && $filtroMarca) {
         $totalCarrosQuery .= " WHERE marca LIKE :filtroMarca";
-        $totalCarrosParams[':filtroMarca'] = "%$filtroMarca%";
+        $totalCarrosParams[':filtroMarca'] = "%$marcaFiltro%";
     }
 
     $totalCarrosStmt = $db->prepare($totalCarrosQuery);

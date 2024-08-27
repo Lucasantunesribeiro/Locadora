@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-  fetch('../src/routes/api/listar_usuarios.php')
+  fetch('/locadora_de_carros/src/routes/api/listar_usuarios.php')
       .then(response => response.json())
       .then(data => {
           if (Array.isArray(data)) {

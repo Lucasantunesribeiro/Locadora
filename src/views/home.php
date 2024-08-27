@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once __DIR__ . '/../core/Database.php'; // Corrigido o caminho para Database.php
+require_once __DIR__ . '/../../core/Database.php'; // Corrigido o caminho para Database.php
 
 // Verificar se o usuário está logado
 if (!isset($_SESSION['usuario_id'])) {
@@ -18,7 +18,7 @@ try {
 
     if (!$usuario) {
         echo "Usuário não encontrado.";
-        header('Location: create_user.html');
+        header('Location: /locadora_de_carros/public/index.html');
         exit;
     }
 
@@ -39,7 +39,7 @@ try {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home - Locadora de Carros</title>
-    <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="/locadora_de_carros/public/css/home.css">
 </head>
 
 <body>
@@ -48,7 +48,7 @@ try {
             <h1 class="navbar__title">Bem-vindo à Locadora de Carros</h1>
             <div class="navbar">
                 <ul class="navbar__menu">
-                    <li class="navbar__item"><a href="index.php" class="navbar__link">Início</a></li>
+                    <li class="navbar__item"><a href="home.php" class="navbar__link">Início</a></li>
                     <li class="navbar__item"><a href="create_car.php" class="navbar__link">Criar o Carro</a></li>
                     <li class="navbar__item"><a href="detalhar_carro.html" class="navbar__link">Detalhar os Carros</a>
                     </li>
@@ -82,6 +82,8 @@ try {
     <footer class="footer">
         <p class="footer__text">&copy; 2024 Locadora de Carros. Todos os direitos reservados.</p>
     </footer>
+
+
 </body>
 
 </html>

@@ -9,7 +9,7 @@ document.getElementById('create-car-form').addEventListener('submit', function (
     const diaria = document.getElementById('diaria').value;
 
 
-    fetch('../src/routes/api/criacao_carro.php', {
+    fetch('/locadora_de_carros/src/routes/api/criacao_carro.php', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded',

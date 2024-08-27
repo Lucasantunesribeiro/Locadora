@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (result.status === 'error') {
                 alert(result.message); // Mostra mensagem de erro
             } else {
-                window.location.href = '../public/login.html'; // Redireciona para a página de login
+                window.location.href = '/locadora_de_carros/src/views/login.html'; // Redireciona para a página de login
             }
         } catch (error) {
             console.error('Erro ao excluir conta:', error); // Mostra erro no console

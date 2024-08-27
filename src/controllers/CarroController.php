@@ -24,12 +24,12 @@ class CarroController
             );
 
             if ($resultado['status'] === 'success') {
-                header('Location: /../../public/home.php');
+                header('Location: /locadora_de_carros/src/views/home.php');
                 exit;
             } else {
                 session_start();
                 $_SESSION['error_message'] = $resultado['message'];
-                header('Location: /../../public/create.html');
+                header('Location: /locadora_de_carros/public/index.html');
                 exit;
             }
         } else {

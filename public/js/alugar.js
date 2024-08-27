@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         const formData = new FormData(form);
 
-        fetch('../src/routes/api/alugar_carro.php', {
+        fetch('/locadora_de_carros/src/routes/api/alugar_carro.php', {
             method: 'POST',
             body: formData
         })

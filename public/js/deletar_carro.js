@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    fetch('../src/routes/api/listar_carro.php') // Verifique o caminho e nome do arquivo PHP
+    fetch('/locadora_de_carros/src/routes/api/listar_carro.php') // Verifique o caminho e nome do arquivo PHP
         .then(response => response.json())
         .then(data => {
             const tableBody = document.querySelector('#carros-table tbody');
@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function deletarCarro(id) {
     if (confirm('Tem certeza de que deseja excluir este carro?')) {
-        fetch(`../src/routes/api/deletar_carro.php?id=${id}`, { // Verifique o caminho e nome do arquivo PHP
+        fetch(`/locadora_de_carros/src/routes/api/deletar_carro.php?id=${id}`, { // Verifique o caminho e nome do arquivo PHP
             method: 'GET'
         })
         .then(response => response.json())

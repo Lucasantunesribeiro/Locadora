@@ -56,13 +56,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         // Resposta JSON de sucesso com URL de redirecionamento
         $response['status'] = 'success';
-        $response['redirect'] = '/locadora_de_carros/public/index.php'; // Redirecionamento
+        $response['redirect'] = '/locadora_de_carros/src/views/home.php'; // Redirecionamento
         echo json_encode($response);
         exit;
     } else {
         $response['status'] = 'error';
         $response['message'] = 'Email ou senha inválidos.';
-        $response['redirect'] = '/locadora_de_carros/public/create_user.html'; // Redirecionamento
+        $response['redirect'] = '/locadora_de_carros/public/index.html'; // Redirecionamento
         echo json_encode($response);
         exit;
     }

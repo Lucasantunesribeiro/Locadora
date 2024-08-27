@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alugar Carro</title>
+    <link rel="stylesheet" href="/locadora_de_carros/public/css/style.css">
+</head>
+
+<body>
+    <div>
+        <header class="aluguel-container">
+            <h1 class="aluguel-titulo">Alugar Carro</h1>
+        </header>
+        <main class="container">
+            <form id="aluguel-form" aria-labelledby="form-title">
+                <label for="carro_id">ID do Carro:</label>
+                <input type="text" name="carro_id" id="carro_id" required aria-required="true">
+
+                <label for="usuario_id">ID do Usuário:</label>
+                <input type="text" name="usuario_id" id="usuario_id" required aria-required="true">
+
+                <label for="data_inicio">Data de Início:</label>
+                <input type="date" name="data_inicio" id="data_inicio" required aria-required="true">
+
+                <label for="data_fim">Data de Fim:</label>
+                <input type="date" name="data_fim" id="data_fim" required aria-required="true">
+
+                <button type="submit" class="btn-criar">Solicitar Aluguel</button>
+                <a href="home.php" class="btn-voltar" role="button">Voltar</a>
+            </form>
+            
+        </main>
+    </div>
+    <script src="/locadora_de_carros/public/js/alugar.js"></script>
+</body>
+
+</html>

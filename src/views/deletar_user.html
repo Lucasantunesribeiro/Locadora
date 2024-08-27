@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Excluir Conta</title>
+    <link rel="stylesheet" href="/locadora_de_carros/public/css/style.css">
+
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1 class="container_titulo">Deletar Usuário</h1>
+        </header>
+        <div class="container-deletar">
+            <h2 class="container-deletar_titulo">Tem certeza que deseja excluir sua conta?</h2>
+            <form id="delete-form" method="POST" action="../src/routes/api/deletar_usuario.php">
+                <input type="hidden" name="delete" value="true">
+                <button type="submit" class="btn-criar">Excluir Conta</button>
+                <a href="home.php" class="btn-voltar">Voltar</a>
+            </form>
+        </div>
+
+
+    </div>
+</body>
+<script src="/locadora_de_carros/public/js/deletar_user.js"></script>
+
+</html>

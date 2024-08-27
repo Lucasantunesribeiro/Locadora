@@ -5,7 +5,7 @@ document.getElementById('login-form').addEventListener('submit', function(event)
     const email = document.getElementById('email').value;
     const senha = document.getElementById('senha').value;
 
-    fetch('../src/routes/api/login.php', {
+    fetch('/locadora_de_carros/src/routes/api/login.php', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
@@ -18,7 +18,7 @@ document.getElementById('login-form').addEventListener('submit', function(event)
         try {
             const data = JSON.parse(text); // Tenta parsear a resposta como JSON
             if (data.status === 'success') {
-                window.location.href = data.redirect || '/locadora_de_carros/public/index.php';
+                window.location.href = data.redirect || '/locadora_de_carros/src/views/home.php';
             } else {
                 alert(data.message); // Exibe a mensagem de erro
                 if (data.redirect) {

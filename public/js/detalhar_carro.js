@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     detalharCarroBtn.addEventListener('click', () => {
         const carroId = document.getElementById('carro_id').value;
 
-        fetch(`../src/routes/api/detalhar_carro.php?id=${carroId}`, {
+        fetch(`/locadora_de_carros/src/routes/api/detalhar_carro.php?id=${carroId}`, {
             method: 'GET'
         })
         .then(response => response.json())
@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         </tbody>
                     </table>
                 ` : '<p style="margin-top: 20px;">Este carro ainda não foi alugado.</p>'}
-                <a href="index.php" style="display: block; text-align: center; margin-top: 20px; background-color: #333; color: #fff; padding: 10px; text-decoration: none; border-radius: 5px;">Voltar</a>
+                <a href="/locadora_de_carros/src/views/home.php" style="display: block; text-align: center; margin-top: 20px; background-color: #333; color: #fff; padding: 10px; text-decoration: none; border-radius: 5px;">Voltar</a>
             </div>
         `;
         container.innerHTML = detalhesHTML;

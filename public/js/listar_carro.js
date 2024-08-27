@@ -9,22 +9,16 @@ document.addEventListener('DOMContentLoaded', function() {
         const formData = new FormData(form);
         const queryString = new URLSearchParams(formData).toString();
 
-        fetch(`../src/routes/api/listar_carro.php?${queryString}`)
+        fetch(`/locadora_de_carros/src/routes/api/listar_carro.php?${queryString}`)
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
-                return response.text(); // Alterado para text() para debug
+                return response.json(); // Alterado para json() em vez de text() para simplificar
             })
-            .then(text => {
-                try {
-                    const data = JSON.parse(text);
-                    renderTable(data.carros);
-                    renderPagination(data.totalPaginas);
-                } catch (e) {
-                    console.error('Erro ao parsear JSON:', e);
-                    console.error('Resposta do servidor:', text);
-                }
+            .then(data => {
+                renderTable(data.carros);
+                renderPagination(data.totalPaginas);
             })
             .catch(error => console.error('Erro ao buscar carros:', error));
     }
@@ -48,14 +42,24 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function renderPagination(totalPaginas) {
         paginationDiv.innerHTML = '';
+        const formData = new FormData(form);
+        const params = new URLSearchParams(formData);
+    
+        // Obtém o número da página atual ou define como 1 se não estiver presente
+        const currentPage = parseInt(params.get('pagina')) || 1;
+    
+        // Remove o parâmetro de página atual para evitar duplicações
+        params.delete('pagina');
+    
         for (let i = 1; i <= totalPaginas; i++) {
             const link = document.createElement('a');
-            link.href = `?pagina=${i}&${new URLSearchParams(new FormData(form)).toString()}`;
+            link.href = `?pagina=${i}&${params.toString()}`; // Monta a URL com a nova página e parâmetros restantes
             link.textContent = i;
-            link.className = (parseInt(new URLSearchParams(new FormData(form)).get('pagina')) === i) ? 'active' : '';
+            link.className = (i === currentPage) ? 'active' : '';
             paginationDiv.appendChild(link);
         }
     }
+    
 
     function togglePaginationOptions() {
         paginationOptionsDiv.style.display = paginationCheckbox.checked ? 'block' : 'none';
