@@ -1,5 +1,5 @@
 document.getElementById('create-user-form').addEventListener('submit', function(e) {
-    e.preventDefault(); // Impede o envio padrão do formulário
+    e.preventDefault(); // Prevents the default form submission
 
     const nome = document.getElementById('nome').value;
     const email = document.getElementById('email').value;
@@ -19,12 +19,12 @@ document.getElementById('create-user-form').addEventListener('submit', function(
     .then(response => response.json())
     .then(data => {
         if (data.status === 'success') {
-            alert(data.message); // Exibir mensagem de sucesso
-            window.location.href = '/locadora_de_carros/src/views/login.html'; // Redirecionar para a página de login
+            alert(data.message); // Display success message
+            window.location.href = '/locadora_de_carros/src/views/login.html'; // Redirect to login page
         } else {
-            alert(data.message); // Exibir mensagem de erro
+            alert(data.message); // Display error message
             if (data.message === 'Este email já está cadastrado.') {
-                window.location.href = '/locadora_de_carros/src/views/login.html'; // Redirecionar para login se o email já estiver cadastrado
+                window.location.href = '/locadora_de_carros/src/views/login.html'; // Redirect to login page if email is already registered
             }
         }
     })
