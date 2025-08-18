@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: sistema-locadora-carros
+    env: php
+    buildCommand: |
+      php -v
+      composer install --no-dev --optimize-autoloader
+    startCommand: php -S 0.0.0.0:$PORT -t public
+    envVars:
+      - key: APP_ENV
+        value: production
+      - key: APP_DEBUG
+        value: false
