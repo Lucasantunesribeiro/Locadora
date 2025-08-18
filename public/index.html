@@ -1,34 +1,218 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro de Usuário</title>
+    <title>DriveMax - Locadora Premium</title>
     <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-car"></i>
+                <span>DriveMax</span>
+            </div>
+            <div class="nav-menu">
+                <a href="#home" class="nav-link">Início</a>
+                <a href="#services" class="nav-link">Serviços</a>
+                <a href="#fleet" class="nav-link">Frota</a>
+                <a href="#contact" class="nav-link">Contato</a>
+            </div>
+            <div class="nav-auth">
+                <a href="/login" class="btn-auth login">Entrar</a>
+                <a href="/cadastro" class="btn-auth register">Cadastrar</a>
+            </div>
+        </div>
+    </nav>
 
-<body class="create-user-body">
-    <div class="create-user-container">
-        <h1 class="create-user-title">Cadastre-se</h1>
-        <form id="create-user-form" class="create-user-form">
-            <div class="form-group">
-                <label for="nome" class="form-label">Nome:</label>
-                <input type="text" id="nome" name="nome" class="form-input" required>
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-background">
+            <div class="hero-overlay"></div>
+        </div>
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1 class="hero-title">
+                    <span class="gradient-text">Aluguel de Carros</span>
+                    <br>Premium & Confiável
+                </h1>
+                <p class="hero-description">
+                    Encontre o carro perfeito para sua jornada. Frota moderna, 
+                    preços competitivos e atendimento excepcional.
+                </p>
+                <div class="hero-actions">
+                    <a href="/cadastro" class="btn btn-primary">
+                        <i class="fas fa-rocket"></i>
+                        Começar Agora
+                    </a>
+                    <a href="#fleet" class="btn btn-outline">
+                        <i class="fas fa-cars"></i>
+                        Ver Frota
+                    </a>
+                </div>
             </div>
-            <div class="form-group">
-                <label for="email" class="form-label">Email:</label>
-                <input type="email" id="email" name="email" class="form-input" required>
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <div class="stat-number">500+</div>
+                    <div class="stat-label">Carros Disponíveis</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">10k+</div>
+                    <div class="stat-label">Clientes Satisfeitos</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">24/7</div>
+                    <div class="stat-label">Suporte Online</div>
+                </div>
             </div>
-            <div class="form-group">
-                <label for="senha" class="form-label">Senha:</label>
-                <input type="password" id="senha" name="senha" class="form-input" required>
-            </div>
-            <button type="submit" class="create-user-button">Criar Usuário</button>
-        </form>
-    </div>
+        </div>
+        <div class="scroll-indicator">
+            <div class="scroll-arrow"></div>
+        </div>
+    </section>
 
-    <script src="js/create_user.js"></script>
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Nossos Serviços</h2>
+                <p class="section-subtitle">Experiência completa em locação de veículos</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-car-side"></i>
+                    </div>
+                    <h3>Frota Diversificada</h3>
+                    <p>Desde econômicos até carros de luxo, temos o veículo ideal para cada ocasião.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Seguro Completo</h3>
+                    <p>Proteção total para você e seu veículo, com cobertura 24 horas.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3>Entrega Rápida</h3>
+                    <p>Retirada e entrega no local de sua preferência em até 30 minutos.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3>Suporte 24/7</h3>
+                    <p>Assistência completa a qualquer hora, onde quer que você esteja.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Fleet Preview -->
+    <section id="fleet" class="fleet-preview">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Nossa Frota</h2>
+                <p class="section-subtitle">Veículos modernos e bem conservados</p>
+            </div>
+            <div class="fleet-grid">
+                <div class="fleet-card">
+                    <div class="fleet-image">
+                        <div class="fleet-badge">Econômico</div>
+                    </div>
+                    <div class="fleet-info">
+                        <h3>Volkswagen Gol</h3>
+                        <p>Ideal para o dia a dia</p>
+                        <div class="fleet-price">
+                            <span>A partir de</span>
+                            <strong>R$ 89/dia</strong>
+                        </div>
+                    </div>
+                </div>
+                <div class="fleet-card">
+                    <div class="fleet-image">
+                        <div class="fleet-badge">Intermediário</div>
+                    </div>
+                    <div class="fleet-info">
+                        <h3>Honda Civic</h3>
+                        <p>Conforto e elegância</p>
+                        <div class="fleet-price">
+                            <span>A partir de</span>
+                            <strong>R$ 140/dia</strong>
+                        </div>
+                    </div>
+                </div>
+                <div class="fleet-card">
+                    <div class="fleet-image">
+                        <div class="fleet-badge">Premium</div>
+                    </div>
+                    <div class="fleet-info">
+                        <h3>Toyota Corolla</h3>
+                        <p>Sofisticação e performance</p>
+                        <div class="fleet-price">
+                            <span>A partir de</span>
+                            <strong>R$ 120/dia</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="fleet-actions">
+                <a href="/login" class="btn btn-primary">Ver Toda Frota</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <i class="fas fa-car"></i>
+                        <span>DriveMax</span>
+                    </div>
+                    <p>Sua jornada começa aqui. Aluguel de carros premium com atendimento excepcional.</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Empresa</h4>
+                        <a href="#">Sobre Nós</a>
+                        <a href="#">Carreiras</a>
+                        <a href="#">Imprensa</a>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Serviços</h4>
+                        <a href="#">Aluguel Diário</a>
+                        <a href="#">Aluguel Mensal</a>
+                        <a href="#">Corporativo</a>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Suporte</h4>
+                        <a href="#">Central de Ajuda</a>
+                        <a href="#">Contato</a>
+                        <a href="#">FAQ</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 DriveMax. Todos os direitos reservados.</p>
+                <div class="footer-social">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/homepage.js"></script>
 </body>
-
 </html>

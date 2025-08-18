@@ -1,0 +1,16 @@
+RewriteEngine On
+
+# Redirecionar todas as rotas para index.php
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php [QSA,L]
+
+# Headers de segurança
+Header always set X-Content-Type-Options nosniff
+Header always set X-Frame-Options DENY
+Header always set X-XSS-Protection "1; mode=block"
+
+# Configurações PHP para produção
+php_value display_errors Off
+php_value log_errors On
+php_value error_log /var/log/php_errors.log

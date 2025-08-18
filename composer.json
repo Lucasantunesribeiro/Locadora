@@ -1,0 +1,16 @@
+{
+    "name": "sistema/locadora-carros",
+    "description": "Sistema de Locadora de Carros",
+    "type": "project",
+    "require": {
+        "php": "^8.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        },
+        "files": [
+            "src/autoload.php"
+        ]
+    }
+}

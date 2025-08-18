@@ -1,63 +1,68 @@
 <?php
-require_once __DIR__ . '/../../core/Database.php'; // Corrija o caminho se necessário
 
-class CarroModel
+class Carro
 {
     private $db;
 
-    public function __construct()
+    public function __construct($db)
     {
-        $this->db = Database::getInstance();
+        $this->db = $db;
     }
 
-    public function criar($modelo, $marca, $ano, $cor, $placa, $diaria, $disponibilidade)
+    public function criar($marca, $modelo, $ano, $cor, $preco_diario)
     {
         try {
             $stmt = $this->db->prepare("
-                INSERT INTO carros (modelo, marca, ano, cor, placa, diaria, disponibilidade)
-                VALUES (:modelo, :marca, :ano, :cor, :placa, :diaria, :disponibilidade)
+                INSERT INTO carros (marca, modelo, ano, cor, preco_diario, disponivel)
+                VALUES (:marca, :modelo, :ano, :cor, :preco_diario, 1)
             ");
 
-            $stmt->bindParam(':modelo', $modelo);
             $stmt->bindParam(':marca', $marca);
-            $stmt->bindParam(':ano', $ano);
+            $stmt->bindParam(':modelo', $modelo);
+            $stmt->bindParam(':ano', $ano, PDO::PARAM_INT);
             $stmt->bindParam(':cor', $cor);
-            $stmt->bindParam(':placa', $placa);
-            $stmt->bindParam(':diaria', $diaria);
-            $stmt->bindParam(':disponibilidade', $disponibilidade);
+            $stmt->bindParam(':preco_diario', $preco_diario);
 
             return $stmt->execute();
         } catch (PDOException $e) {
-            echo "Erro ao criar carro: " . $e->getMessage();
             return false;
         }
     }
 
-    public function detalhar($id)
+    public function buscarPorId($id)
     {
         try {
             $stmt = $this->db->prepare("SELECT * FROM carros WHERE id = :id LIMIT 1");
-            $stmt->bindParam(':id', $id);
+            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
             $stmt->execute();
             return $stmt->fetch(PDO::FETCH_ASSOC);
         } catch (PDOException $e) {
-            echo "Erro ao detalhar carro: " . $e->getMessage();
             return false;
         }
     }
 
-    public function listar()
+    public function listarTodos()
     {
         try {
-            $stmt = $this->db->query("SELECT * FROM carros");
+            $stmt = $this->db->query("SELECT * FROM carros ORDER BY id DESC");
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         } catch (PDOException $e) {
-            echo "Erro ao listar carros: " . $e->getMessage();
-            return false;
+            return [];
         }
     }
 
-    public function deletar($id) {
+    public function listarDisponiveis()
+    {
+        try {
+            $stmt = $this->db->query("SELECT * FROM carros WHERE disponivel = 1 ORDER BY marca, modelo");
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            return [];
+        }
+    }
+
+    public function deletar($id) 
+    {
         try {
             $stmt = $this->db->prepare("DELETE FROM carros WHERE id = :id");
             $stmt->bindParam(':id', $id, PDO::PARAM_INT);
@@ -66,5 +71,16 @@ class CarroModel
             return false;
         }
     }
+
+    public function atualizar($id, $disponivel)
+    {
+        try {
+            $stmt = $this->db->prepare("UPDATE carros SET disponivel = :disponivel WHERE id = :id");
+            $stmt->bindParam(':disponivel', $disponivel, PDO::PARAM_BOOL);
+            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+            return $stmt->execute();
+        } catch (PDOException $e) {
+            return false;
+        }
+    }
 }
-?>

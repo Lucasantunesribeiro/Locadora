@@ -1,0 +1,37 @@
+# Logs
+*.log
+
+# Vendor (composer)
+/vendor/
+
+# Environment files
+.env
+.env.local
+.env.production
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Cache files
+/cache/
+/tmp/
+
+# Upload directories
+/uploads/
+/storage/
+
+# Database backups
+*.sql.backup
+*.db.backup

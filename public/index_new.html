@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AutoLux - Locadora Premium de Veículos</title>
+    <link rel="stylesheet" href="/css/shadcn.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.263.1/lucide.min.css">
+    <style>
+        /* Custom Gradients */
+        .gradient-hero {
+            background: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--primary) / 0.8) 100%);
+        }
+        
+        .gradient-card {
+            background: linear-gradient(135deg, hsl(var(--card)) 0%, hsl(var(--muted)) 100%);
+        }
+        
+        /* Hero Section */
+        .hero-section {
+            min-height: 100vh;
+            background: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--primary) / 0.9) 50%, hsl(var(--secondary)) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><path d="M0,1000 Q250,800 500,850 T1000,750 L1000,1000 Z" fill="rgba(255,255,255,0.1)"/></svg>');
+            background-size: cover;
+            background-position: bottom;
+        }
+        
+        /* Animations */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        @keyframes slideUp {
+            from { transform: translateY(30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        @keyframes fadeInScale {
+            from { transform: scale(0.9); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+        
+        .animate-float { animation: float 6s ease-in-out infinite; }
+        .animate-slide-up { animation: slideUp 0.6s ease-out; }
+        .animate-fade-scale { animation: fadeInScale 0.5s ease-out; }
+        
+        /* Feature Cards */
+        .feature-card {
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        /* Stats Counter */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+        
+        .stat-card {
+            text-align: center;
+            color: white;
+        }
+        
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 800;
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+        
+        /* CTA Buttons */
+        .btn-cta {
+            background: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--primary) / 0.8) 100%);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 0.75rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+        
+        .btn-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+        }
+        
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+        
+        /* Fleet Section */
+        .fleet-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+        
+        .car-showcase {
+            background: hsl(var(--card));
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .car-showcase:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 35px 70px rgba(0, 0, 0, 0.15);
+        }
+        
+        .car-image {
+            height: 250px;
+            background: linear-gradient(135deg, hsl(var(--muted)) 0%, hsl(var(--accent)) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: hsl(var(--muted-foreground));
+            font-size: 4rem;
+        }
+        
+        /* Testimonials */
+        .testimonial-card {
+            background: hsl(var(--card));
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        /* Footer */
+        .footer-section {
+            background: hsl(var(--secondary));
+            color: hsl(var(--secondary-foreground));
+        }
+        
+        /* Navigation */
+        .navbar {
+            backdrop-filter: blur(20px);
+            background: rgba(255, 255, 255, 0.95);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-section { min-height: 80vh; }
+            .stat-number { font-size: 2rem; }
+            .fleet-grid { grid-template-columns: 1fr; }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+    </style>
+</head>
+<body class="bg-background text-foreground">
+    <!-- Navigation -->
+    <nav class="navbar fixed top-0 left-0 right-0 z-50 transition-all duration-200">
+        <div class="mx-auto max-w-7xl px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center gap-2">
+                    <div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
+                        <i data-lucide="car" class="w-6 h-6 text-primary-foreground"></i>
+                    </div>
+                    <span class="text-2xl font-bold text-primary">AutoLux</span>
+                </div>
+                
+                <div class="hidden md:flex items-center gap-8">
+                    <a href="#inicio" class="text-foreground hover:text-primary transition-colors">Início</a>
+                    <a href="#frota" class="text-foreground hover:text-primary transition-colors">Frota</a>
+                    <a href="#servicos" class="text-foreground hover:text-primary transition-colors">Serviços</a>
+                    <a href="#contato" class="text-foreground hover:text-primary transition-colors">Contato</a>
+                </div>
+                
+                <div class="flex items-center gap-4">
+                    <a href="/login" class="text-foreground hover:text-primary transition-colors">Entrar</a>
+                    <a href="/cadastro_ultimate.html" class="btn-cta inline-flex items-center gap-2">
+                        <i data-lucide="user-plus" class="w-4 h-4"></i>
+                        Cadastrar
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="hero-section flex items-center justify-center relative">
+        <div class="mx-auto max-w-7xl px-6 py-20 text-center relative z-10">
+            <div class="animate-slide-up">
+                <h1 class="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
+                    Sua Jornada
+                    <span class="block bg-gradient-to-r from-yellow-400 to-orange-500 bg-clip-text text-transparent">
+                        Premium
+                    </span>
+                    Começa Aqui
+                </h1>
+                
+                <p class="text-xl md:text-2xl text-white/90 mb-12 max-w-3xl mx-auto leading-relaxed">
+                    Descubra nossa frota exclusiva de veículos premium. Conforto, segurança e estilo 
+                    para transformar cada viagem em uma experiência inesquecível.
+                </p>
+                
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-6 mb-16">
+                    <a href="/cadastro_ultimate.html" class="btn-cta inline-flex items-center gap-3 text-lg">
+                        <i data-lucide="car-front" class="w-5 h-5"></i>
+                        Alugar Agora
+                    </a>
+                    <a href="#frota" class="btn-secondary inline-flex items-center gap-3 text-lg">
+                        <i data-lucide="eye" class="w-5 h-5"></i>
+                        Ver Frota
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Stats -->
+            <div class="stats-grid animate-fade-scale">
+                <div class="stat-card">
+                    <div class="stat-number" data-count="500">0</div>
+                    <p class="text-white/80 text-lg">Veículos Premium</p>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" data-count="10000">0</div>
+                    <p class="text-white/80 text-lg">Clientes Satisfeitos</p>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" data-count="50">0</div>
+                    <p class="text-white/80 text-lg">Cidades Atendidas</p>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" data-count="24">0</div>
+                    <p class="text-white/80 text-lg">Suporte 24h</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Floating Cars -->
+        <div class="absolute bottom-10 right-10 animate-float opacity-20">
+            <i data-lucide="car" class="w-32 h-32 text-white"></i>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-20 bg-background">
+        <div class="mx-auto max-w-7xl px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold text-foreground mb-6">
+                    Por que escolher a <span class="text-primary">AutoLux</span>?
+                </h2>
+                <p class="text-xl text-muted-foreground max-w-3xl mx-auto">
+                    Oferecemos muito mais que um simples aluguel de carros. 
+                    Proporcionamos experiências únicas e serviços premium.
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="feature-card rounded-xl p-8 text-center">
+                    <div class="w-16 h-16 bg-primary/10 rounded-xl flex items-center justify-center mx-auto mb-6">
+                        <i data-lucide="shield-check" class="w-8 h-8 text-primary"></i>
+                    </div>
+                    <h3 class="text-2xl font-semibold text-foreground mb-4">Segurança Total</h3>
+                    <p class="text-muted-foreground">
+                        Todos os nossos veículos passam por rigorosas inspeções de segurança 
+                        e possuem seguro completo.
+                    </p>
+                </div>
+                
+                <div class="feature-card rounded-xl p-8 text-center">
+                    <div class="w-16 h-16 bg-primary/10 rounded-xl flex items-center justify-center mx-auto mb-6">
+                        <i data-lucide="clock" class="w-8 h-8 text-primary"></i>
+                    </div>
+                    <h3 class="text-2xl font-semibold text-foreground mb-4">Disponível 24/7</h3>
+                    <p class="text-muted-foreground">
+                        Suporte ao cliente 24 horas por dia, 7 dias por semana. 
+                        Estamos sempre prontos para ajudá-lo.
+                    </p>
+                </div>
+                
+                <div class="feature-card rounded-xl p-8 text-center">
+                    <div class="w-16 h-16 bg-primary/10 rounded-xl flex items-center justify-center mx-auto mb-6">
+                        <i data-lucide="star" class="w-8 h-8 text-primary"></i>
+                    </div>
+                    <h3 class="text-2xl font-semibold text-foreground mb-4">Experiência Premium</h3>
+                    <p class="text-muted-foreground">
+                        Frota exclusiva de veículos de luxo, sempre limpos, 
+                        revisados e com tecnologia de ponta.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Fleet Section -->
+    <section id="frota" class="py-20 bg-muted/30">
+        <div class="mx-auto max-w-7xl px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold text-foreground mb-6">
+                    Nossa Frota <span class="text-primary">Premium</span>
+                </h2>
+                <p class="text-xl text-muted-foreground max-w-3xl mx-auto">
+                    Escolha entre nossa seleção cuidadosa de veículos premium, 
+                    desde carros econômicos até SUVs de luxo.
+                </p>
+            </div>
+            
+            <div class="fleet-grid">
+                <div class="car-showcase">
+                    <div class="car-image">
+                        <i data-lucide="car" class="w-20 h-20"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold text-foreground mb-2">Sedans Executivos</h3>
+                        <p class="text-muted-foreground mb-4">
+                            Conforto e elegância para viagens de negócios e momentos especiais.
+                        </p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-3xl font-bold text-primary">R$ 120/dia</span>
+                            <button class="bg-primary text-primary-foreground px-6 py-2 rounded-lg hover:bg-primary/90 transition-colors">
+                                Ver Modelos
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="car-showcase">
+                    <div class="car-image">
+                        <i data-lucide="truck" class="w-20 h-20"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold text-foreground mb-2">SUVs Premium</h3>
+                        <p class="text-muted-foreground mb-4">
+                            Espaço, segurança e tecnologia para toda a família.
+                        </p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-3xl font-bold text-primary">R$ 180/dia</span>
+                            <button class="bg-primary text-primary-foreground px-6 py-2 rounded-lg hover:bg-primary/90 transition-colors">
+                                Ver Modelos
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="car-showcase">
+                    <div class="car-image">
+                        <i data-lucide="zap" class="w-20 h-20"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold text-foreground mb-2">Esportivos</h3>
+                        <p class="text-muted-foreground mb-4">
+                            Performance e adrenalina para quem busca emoção.
+                        </p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-3xl font-bold text-primary">R$ 300/dia</span>
+                            <button class="bg-primary text-primary-foreground px-6 py-2 rounded-lg hover:bg-primary/90 transition-colors">
+                                Ver Modelos
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="servicos" class="py-20 bg-background">
+        <div class="mx-auto max-w-7xl px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold text-foreground mb-6">
+                    Serviços <span class="text-primary">Exclusivos</span>
+                </h2>
+                <p class="text-xl text-muted-foreground max-w-3xl mx-auto">
+                    Vá além do aluguel comum. Oferecemos serviços diferenciados 
+                    para tornar sua experiência única.
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="text-center p-6">
+                    <div class="w-16 h-16 bg-primary/10 rounded-xl flex items-center justify-center mx-auto mb-4">
+                        <i data-lucide="map-pin" class="w-8 h-8 text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-foreground mb-2">Entrega e Coleta</h3>
+                    <p class="text-muted-foreground">Levamos o carro até você e buscamos quando terminar.</p>
+                </div>
+                
+                <div class="text-center p-6">
+                    <div class="w-16 h-16 bg-primary/10 rounded-xl flex items-center justify-center mx-auto mb-4">
+                        <i data-lucide="headphones" class="w-8 h-8 text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-foreground mb-2">Concierge 24h</h3>
+                    <p class="text-muted-foreground">Assistência personalizada a qualquer hora do dia.</p>
+                </div>
+                
+                <div class="text-center p-6">
+                    <div class="w-16 h-16 bg-primary/10 rounded-xl flex items-center justify-center mx-auto mb-4">
+                        <i data-lucide="settings" class="w-8 h-8 text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-foreground mb-2">Manutenção Premium</h3>
+                    <p class="text-muted-foreground">Veículos sempre em perfeito estado e higienizados.</p>
+                </div>
+                
+                <div class="text-center p-6">
+                    <div class="w-16 h-16 bg-primary/10 rounded-xl flex items-center justify-center mx-auto mb-4">
+                        <i data-lucide="smartphone" class="w-8 h-8 text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-foreground mb-2">App Inteligente</h3>
+                    <p class="text-muted-foreground">Controle total do seu aluguel pelo smartphone.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="py-20 bg-muted/30">
+        <div class="mx-auto max-w-7xl px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold text-foreground mb-6">
+                    O que nossos <span class="text-primary">clientes</span> dizem
+                </h2>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="testimonial-card">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-primary rounded-full flex items-center justify-center mr-4">
+                            <span class="text-primary-foreground font-bold">M</span>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-foreground">Maria Silva</h4>
+                            <p class="text-muted-foreground text-sm">Empresária</p>
+                        </div>
+                    </div>
+                    <p class="text-muted-foreground">
+                        "Serviço impecável! O carro estava perfeito e o atendimento superou 
+                        todas as minhas expectativas. Recomendo para todos."
+                    </p>
+                    <div class="flex text-yellow-500 mt-4">
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-primary rounded-full flex items-center justify-center mr-4">
+                            <span class="text-primary-foreground font-bold">J</span>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-foreground">João Santos</h4>
+                            <p class="text-muted-foreground text-sm">Consultor</p>
+                        </div>
+                    </div>
+                    <p class="text-muted-foreground">
+                        "Já usei várias locadoras, mas a AutoLux é diferente. 
+                        Qualidade premium e preço justo. Virei cliente fiel!"
+                    </p>
+                    <div class="flex text-yellow-500 mt-4">
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-primary rounded-full flex items-center justify-center mr-4">
+                            <span class="text-primary-foreground font-bold">A</span>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-foreground">Ana Costa</h4>
+                            <p class="text-muted-foreground text-sm">Advogada</p>
+                        </div>
+                    </div>
+                    <p class="text-muted-foreground">
+                        "A experiência foi fantástica desde o primeiro contato. 
+                        Profissionais competentes e carros de primeira linha."
+                    </p>
+                    <div class="flex text-yellow-500 mt-4">
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 gradient-hero">
+        <div class="mx-auto max-w-4xl px-6 text-center">
+            <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">
+                Pronto para sua próxima aventura?
+            </h2>
+            <p class="text-xl text-white/90 mb-8">
+                Junte-se a milhares de clientes satisfeitos e descubra 
+                a diferença de alugar com a AutoLux.
+            </p>
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a href="/cadastro_ultimate.html" class="btn-cta inline-flex items-center gap-3 text-lg">
+                    <i data-lucide="car-front" class="w-5 h-5"></i>
+                    Começar Agora
+                </a>
+                <a href="tel:+5511999999999" class="btn-secondary inline-flex items-center gap-3 text-lg">
+                    <i data-lucide="phone" class="w-5 h-5"></i>
+                    Falar com Especialista
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contato" class="footer-section py-16">
+        <div class="mx-auto max-w-7xl px-6">
+            <div class="grid md:grid-cols-4 gap-8 mb-12">
+                <div>
+                    <div class="flex items-center gap-2 mb-6">
+                        <div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
+                            <i data-lucide="car" class="w-6 h-6 text-primary-foreground"></i>
+                        </div>
+                        <span class="text-2xl font-bold text-primary">AutoLux</span>
+                    </div>
+                    <p class="text-muted-foreground mb-4">
+                        A locadora premium que transforma cada viagem 
+                        em uma experiência inesquecível.
+                    </p>
+                    <div class="flex gap-4">
+                        <a href="#" class="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-colors">
+                            <i data-lucide="facebook" class="w-5 h-5"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-colors">
+                            <i data-lucide="instagram" class="w-5 h-5"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-colors">
+                            <i data-lucide="twitter" class="w-5 h-5"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold text-foreground mb-4">Serviços</h3>
+                    <ul class="space-y-2 text-muted-foreground">
+                        <li><a href="#" class="hover:text-primary transition-colors">Aluguel Diário</a></li>
+                        <li><a href="#" class="hover:text-primary transition-colors">Aluguel Mensal</a></li>
+                        <li><a href="#" class="hover:text-primary transition-colors">Eventos Especiais</a></li>
+                        <li><a href="#" class="hover:text-primary transition-colors">Viagens Corporativas</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold text-foreground mb-4">Suporte</h3>
+                    <ul class="space-y-2 text-muted-foreground">
+                        <li><a href="#" class="hover:text-primary transition-colors">Central de Ajuda</a></li>
+                        <li><a href="#" class="hover:text-primary transition-colors">Política de Privacidade</a></li>
+                        <li><a href="#" class="hover:text-primary transition-colors">Termos de Uso</a></li>
+                        <li><a href="#" class="hover:text-primary transition-colors">Fale Conosco</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold text-foreground mb-4">Contato</h3>
+                    <div class="space-y-3 text-muted-foreground">
+                        <div class="flex items-center gap-3">
+                            <i data-lucide="phone" class="w-5 h-5 text-primary"></i>
+                            <span>(11) 99999-9999</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <i data-lucide="mail" class="w-5 h-5 text-primary"></i>
+                            <span>contato@autolux.com</span>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <i data-lucide="map-pin" class="w-5 h-5 text-primary mt-1"></i>
+                            <span>Av. Paulista, 1000<br>São Paulo - SP</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-muted pt-8 text-center text-muted-foreground">
+                <p>&copy; 2024 AutoLux. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+        
+        // Navbar background change on scroll
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 100) {
+                navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+                navbar.style.backdropFilter = 'blur(20px)';
+            } else {
+                navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+                navbar.style.backdropFilter = 'blur(20px)';
+            }
+        });
+        
+        // Counter animation
+        function animateCounter(element, target) {
+            let current = 0;
+            const increment = target / 100;
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    current = target;
+                    clearInterval(timer);
+                }
+                element.textContent = Math.floor(current).toLocaleString();
+            }, 20);
+        }
+        
+        // Initialize counters when they come into view
+        const observerOptions = {
+            threshold: 0.5,
+            rootMargin: '0px 0px -100px 0px'
+        };
+        
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const countElements = entry.target.querySelectorAll('.stat-number');
+                    countElements.forEach(element => {
+                        const target = parseInt(element.getAttribute('data-count'));
+                        animateCounter(element, target);
+                    });
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+        
+        // Observe stats section
+        const statsSection = document.querySelector('.stats-grid');
+        if (statsSection) {
+            observer.observe(statsSection);
+        }
+        
+        // Add animation classes on scroll
+        const animatedElements = document.querySelectorAll('.animate-slide-up, .animate-fade-scale');
+        const animationObserver = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationPlayState = 'running';
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        animatedElements.forEach(element => {
+            element.style.animationPlayState = 'paused';
+            animationObserver.observe(element);
+        });
+    </script>
+</body>
+</html>

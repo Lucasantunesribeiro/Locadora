@@ -1,23 +1,148 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
     <meta charset="UTF-8">
-    <title>Login</title>
-    <link rel="stylesheet" href="/locadora_de_carros/public/css/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - DriveMax</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
+<body>
+    <div class="auth-container">
+        <div class="auth-content">
+            <!-- Left Side -->
+            <div class="auth-left animate-slide-left">
+                <div class="auth-brand">
+                    <i class="fas fa-car"></i>
+                    <span>DriveMax</span>
+                </div>
+                <h1>Bem-vindo de volta!</h1>
+                <p>Acesse sua conta e continue aproveitando nossos serviços premium de locação de veículos.</p>
+                
+                <div class="auth-features">
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <div class="feature-text">
+                            <h3>Login Seguro</h3>
+                            <p>Sua conta protegida com criptografia avançada</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="feature-text">
+                            <h3>Acesso Rápido</h3>
+                            <p>Entre e reserve seu carro em segundos</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-car-side"></i>
+                        </div>
+                        <div class="feature-text">
+                            <h3>Frota Premium</h3>
+                            <p>Acesso a mais de 500 veículos disponíveis</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-<body class="login-body">
-    <div class="login-container">
-        <h1 class="login-title">Login</h1>
-        <form id="login-form" class="login-form">
-            <input type="text" id="nome" class="login-input" placeholder="Nome" required>
-            <input type="email" id="email" class="login-input" placeholder="Email" required>
-            <input type="password" id="senha" class="login-input" placeholder="Senha" required>
-            <button type="submit" class="login-button">Entrar</button>
-        </form>
+            <!-- Right Side -->
+            <div class="auth-right">
+                <div class="auth-form-container animate-slide-right">
+                    <div class="auth-form-header">
+                        <h2>Fazer Login</h2>
+                        <p>Digite suas credenciais para acessar sua conta</p>
+                    </div>
+
+                    <form id="login-form">
+                        <div class="form-group">
+                            <label for="email" class="form-label">
+                                <i class="fas fa-envelope"></i>
+                                Email
+                            </label>
+                            <input type="email" id="email" name="email" class="form-input" 
+                                   placeholder="seu@email.com" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="senha" class="form-label">
+                                <i class="fas fa-lock"></i>
+                                Senha
+                            </label>
+                            <input type="password" id="senha" name="senha" class="form-input" 
+                                   placeholder="••••••••" required>
+                        </div>
+
+                        <button type="submit" class="form-button">
+                            <i class="fas fa-sign-in-alt"></i>
+                            Entrar
+                        </button>
+                    </form>
+
+                    <div class="auth-link">
+                        <p>Não tem uma conta? <a href="/cadastro">Cadastre-se aqui</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <script src="/locadora_de_carros/public/js/login.js"></script>
-</body>
 
+    <script>
+        document.getElementById('login-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const button = this.querySelector('.form-button');
+            const originalText = button.innerHTML;
+            
+            // Loading state
+            button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Entrando...';
+            button.disabled = true;
+            
+            try {
+                const response = await fetch('/api/login', {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                const data = await response.json();
+                
+                if (data.status === 'success') {
+                    // Success animation
+                    button.innerHTML = '<i class="fas fa-check"></i> Sucesso!';
+                    button.style.background = 'var(--success)';
+                    
+                    setTimeout(() => {
+                        window.location.href = data.redirect || '/';
+                    }, 1000);
+                } else {
+                    throw new Error(data.error || 'Erro ao fazer login');
+                }
+            } catch (error) {
+                // Error state
+                button.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Erro';
+                button.style.background = 'var(--error)';
+                alert(error.message);
+                
+                // Reset button after 2 seconds
+                setTimeout(() => {
+                    button.innerHTML = originalText;
+                    button.style.background = 'var(--primary)';
+                    button.disabled = false;
+                }, 2000);
+            }
+        });
+
+        // Add animations on load
+        window.addEventListener('load', function() {
+            document.querySelector('.auth-left').classList.add('animate-slide-left');
+            document.querySelector('.auth-right').classList.add('animate-slide-right');
+        });
+    </script>
+</body>
 </html>

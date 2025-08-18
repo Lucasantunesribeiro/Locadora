@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro - DriveMax</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+    <div class="auth-container">
+        <div class="auth-content">
+            <!-- Left Side -->
+            <div class="auth-left animate-slide-left">
+                <div class="auth-brand">
+                    <i class="fas fa-car"></i>
+                    <span>DriveMax</span>
+                </div>
+                <h1>Junte-se à DriveMax!</h1>
+                <p>Crie sua conta e tenha acesso aos melhores veículos com as melhores condições do mercado.</p>
+                
+                <div class="auth-features">
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-gift"></i>
+                        </div>
+                        <div class="feature-text">
+                            <h3>Cadastro Gratuito</h3>
+                            <p>Sem taxas de inscrição ou mensalidades</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="feature-text">
+                            <h3>Benefícios Exclusivos</h3>
+                            <p>Descontos especiais para novos membros</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <div class="feature-text">
+                            <h3>Acesso Imediato</h3>
+                            <p>Comece a usar todos os recursos agora mesmo</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Side -->
+            <div class="auth-right">
+                <div class="auth-form-container animate-slide-right">
+                    <div class="auth-form-header">
+                        <h2>Criar Conta</h2>
+                        <p>Preencha os dados abaixo para criar sua conta</p>
+                    </div>
+
+                    <form id="create-user-form">
+                        <div class="form-group">
+                            <label for="nome" class="form-label">
+                                <i class="fas fa-user"></i>
+                                Nome Completo
+                            </label>
+                            <input type="text" id="nome" name="nome" class="form-input" 
+                                   placeholder="Seu nome completo" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email" class="form-label">
+                                <i class="fas fa-envelope"></i>
+                                Email
+                            </label>
+                            <input type="email" id="email" name="email" class="form-input" 
+                                   placeholder="seu@email.com" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="senha" class="form-label">
+                                <i class="fas fa-lock"></i>
+                                Senha
+                            </label>
+                            <input type="password" id="senha" name="senha" class="form-input" 
+                                   placeholder="Mínimo 6 caracteres" required minlength="6">
+                        </div>
+
+                        <button type="submit" class="form-button">
+                            <i class="fas fa-user-plus"></i>
+                            Criar Conta
+                        </button>
+                    </form>
+
+                    <div class="auth-link">
+                        <p>Já tem uma conta? <a href="/login">Fazer login</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('create-user-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const button = this.querySelector('.form-button');
+            const originalText = button.innerHTML;
+            
+            // Loading state
+            button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Criando conta...';
+            button.disabled = true;
+            
+            try {
+                const response = await fetch('/api/cadastro', {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                const data = await response.json();
+                
+                if (data.status === 'success') {
+                    // Success animation
+                    button.innerHTML = '<i class="fas fa-check"></i> Conta criada!';
+                    button.style.background = 'var(--success)';
+                    
+                    // Show success message
+                    const successMsg = document.createElement('div');
+                    successMsg.innerHTML = `
+                        <div style="background: var(--success); color: white; padding: 1rem; border-radius: 8px; margin-top: 1rem; text-align: center;">
+                            <i class="fas fa-check-circle"></i> ${data.message}
+                        </div>
+                    `;
+                    this.appendChild(successMsg);
+                    
+                    setTimeout(() => {
+                        window.location.href = data.redirect;
+                    }, 2000);
+                } else {
+                    throw new Error(data.error || 'Erro ao cadastrar usuário');
+                }
+            } catch (error) {
+                // Error state
+                button.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Erro';
+                button.style.background = 'var(--error)';
+                
+                // Show error message
+                const errorMsg = document.createElement('div');
+                errorMsg.innerHTML = `
+                    <div style="background: var(--error); color: white; padding: 1rem; border-radius: 8px; margin-top: 1rem; text-align: center;">
+                        <i class="fas fa-exclamation-triangle"></i> ${error.message}
+                    </div>
+                `;
+                this.appendChild(errorMsg);
+                
+                // Reset button after 3 seconds
+                setTimeout(() => {
+                    button.innerHTML = originalText;
+                    button.style.background = 'var(--primary)';
+                    button.disabled = false;
+                    // Remove error message
+                    if (errorMsg.parentNode) {
+                        errorMsg.remove();
+                    }
+                }, 3000);
+            }
+        });
+
+        // Add animations on load
+        window.addEventListener('load', function() {
+            document.querySelector('.auth-left').classList.add('animate-slide-left');
+            document.querySelector('.auth-right').classList.add('animate-slide-right');
+        });
+
+        // Password strength indicator
+        document.getElementById('senha').addEventListener('input', function() {
+            const senha = this.value;
+            const strength = document.getElementById('password-strength') || createStrengthIndicator();
+            
+            let score = 0;
+            let feedback = '';
+            
+            if (senha.length >= 6) score++;
+            if (senha.match(/[a-z]/)) score++;
+            if (senha.match(/[A-Z]/)) score++;
+            if (senha.match(/[0-9]/)) score++;
+            if (senha.match(/[^a-zA-Z0-9]/)) score++;
+            
+            switch(score) {
+                case 0:
+                case 1:
+                    feedback = 'Muito fraca';
+                    strength.className = 'password-strength weak';
+                    break;
+                case 2:
+                    feedback = 'Fraca';
+                    strength.className = 'password-strength medium';
+                    break;
+                case 3:
+                case 4:
+                    feedback = 'Boa';
+                    strength.className = 'password-strength good';
+                    break;
+                case 5:
+                    feedback = 'Excelente';
+                    strength.className = 'password-strength strong';
+                    break;
+            }
+            
+            strength.textContent = feedback;
+        });
+        
+        function createStrengthIndicator() {
+            const indicator = document.createElement('div');
+            indicator.id = 'password-strength';
+            indicator.style.cssText = `
+                margin-top: 0.5rem;
+                padding: 0.25rem 0.5rem;
+                border-radius: 4px;
+                font-size: 0.8rem;
+                font-weight: 500;
+                transition: all 0.3s ease;
+            `;
+            
+            // Add CSS for strength classes
+            const style = document.createElement('style');
+            style.textContent = `
+                .password-strength.weak { background: #fee; color: #c53030; }
+                .password-strength.medium { background: #fef5e7; color: #d69e2e; }
+                .password-strength.good { background: #f0fff4; color: #38a169; }
+                .password-strength.strong { background: #f0fff4; color: #25855a; }
+            `;
+            document.head.appendChild(style);
+            
+            document.getElementById('senha').parentNode.appendChild(indicator);
+            return indicator;
+        }
+    </script>
+</body>
+</html>

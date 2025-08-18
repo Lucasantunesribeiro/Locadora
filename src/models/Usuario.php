@@ -1,8 +1,5 @@
 <?php
 
-require_once __DIR__ . '/../../core/Database.php';
-require_once __DIR__ . '/../services/UsuarioService.php';
-require_once __DIR__ . '/../controllers/UsuarioController.php';
 class Usuario
 {
     private $db;

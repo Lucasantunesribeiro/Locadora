@@ -1,9 +1,5 @@
 <?php
 
-require_once __DIR__ . '/../../core/Database.php';
-require_once __DIR__ . '/../services/AluguelService.php';
-require_once __DIR__ . '/../routes/api/alugar_carro.php';
-
 class Aluguel
 {
     private $db;
@@ -13,22 +9,86 @@ class Aluguel
         $this->db = $db;
     }
 
-    public function alugarCarro($carroId, $usuarioId, $dataInicio, $dataFim)
+    public function criar($usuarioId, $carroId, $dataInicio, $dataFim, $valorTotal)
     {
-        $query = "INSERT INTO alugueis (carro_id, usuario_id, data_inicio, data_fim) VALUES (:carro_id, :usuario_id, :data_inicio, :data_fim)";
-        $stmt = $this->db->prepare($query);
-        $stmt->bindValue(':carro_id', $carroId);
-        $stmt->bindValue(':usuario_id', $usuarioId);
-        $stmt->bindValue(':data_inicio', $dataInicio);
-        $stmt->bindValue(':data_fim', $dataFim);
-        return $stmt->execute();
+        try {
+            $stmt = $this->db->prepare("
+                INSERT INTO alugueis (usuario_id, carro_id, data_inicio, data_fim, valor_total, status)
+                VALUES (:usuario_id, :carro_id, :data_inicio, :data_fim, :valor_total, 'ativo')
+            ");
+
+            $stmt->bindParam(':usuario_id', $usuarioId, PDO::PARAM_INT);
+            $stmt->bindParam(':carro_id', $carroId, PDO::PARAM_INT);
+            $stmt->bindParam(':data_inicio', $dataInicio);
+            $stmt->bindParam(':data_fim', $dataFim);
+            $stmt->bindParam(':valor_total', $valorTotal);
+
+            return $stmt->execute();
+        } catch (PDOException $e) {
+            return false;
+        }
     }
 
-    public function listarAlugueis()
+    public function listarTodos()
     {
-        $query = "SELECT * FROM alugueis";
-        $stmt = $this->db->query($query);
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        try {
+            $stmt = $this->db->query("
+                SELECT a.*, u.nome as usuario_nome, c.marca, c.modelo 
+                FROM alugueis a 
+                JOIN usuarios u ON a.usuario_id = u.id 
+                JOIN carros c ON a.carro_id = c.id 
+                ORDER BY a.created_at DESC
+            ");
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            return [];
+        }
+    }
+
+    public function listarPorUsuario($usuarioId)
+    {
+        try {
+            $stmt = $this->db->prepare("
+                SELECT a.*, c.marca, c.modelo, c.ano 
+                FROM alugueis a 
+                JOIN carros c ON a.carro_id = c.id 
+                WHERE a.usuario_id = :usuario_id 
+                ORDER BY a.created_at DESC
+            ");
+            $stmt->bindParam(':usuario_id', $usuarioId, PDO::PARAM_INT);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            return [];
+        }
+    }
+
+    public function buscarPorId($id)
+    {
+        try {
+            $stmt = $this->db->prepare("
+                SELECT a.*, u.nome as usuario_nome, c.marca, c.modelo 
+                FROM alugueis a 
+                JOIN usuarios u ON a.usuario_id = u.id 
+                JOIN carros c ON a.carro_id = c.id 
+                WHERE a.id = :id
+            ");
+            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+            $stmt->execute();
+            return $stmt->fetch(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            return false;
+        }
+    }
+
+    public function finalizar($id)
+    {
+        try {
+            $stmt = $this->db->prepare("UPDATE alugueis SET status = 'finalizado' WHERE id = :id");
+            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+            return $stmt->execute();
+        } catch (PDOException $e) {
+            return false;
+        }
     }
 }
-?>

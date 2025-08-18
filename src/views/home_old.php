@@ -456,6 +456,9 @@ try {
                                         <span style="color: ${statusColor}; font-weight: 600;">${disponivel}</span>
                                     </div>
                                     <div style="display: flex; gap: 0.5rem;">
+                                        <button onclick="editCar(${carro.id})" style="padding: 0.5rem; background: var(--primary); color: white; border: none; border-radius: 4px; cursor: pointer;">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
                                         <button onclick="deleteCar(${carro.id})" style="padding: 0.5rem; background: var(--error); color: white; border: none; border-radius: 4px; cursor: pointer;">
                                             <i class="fas fa-trash"></i>
                                         </button>
@@ -596,4 +599,72 @@ try {
         });
     </script>
 </body>
+</html>
+            const marca = prompt('Marca:');
+            const ano = prompt('Ano:');
+            const preco = prompt('Preço diário:');
+            
+            if (nome && marca && ano && preco) {
+                fetch('/api/carros', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+                    body: `nome=${nome}&marca=${marca}&ano=${ano}&preco_diario=${preco}`
+                })
+                .then(r => r.json())
+                .then(data => alert(data.message || data.error))
+                .catch(() => alert('Erro ao criar carro'));
+            }
+        }
+        
+        async function listarCarros() {
+            try {
+                const response = await fetch('/api/carros');
+                const carros = await response.json();
+                
+                let lista = 'CARROS DISPONÍVEIS:\n\n';
+                carros.forEach(carro => {
+                    lista += `ID: ${carro.id} - ${carro.marca} ${carro.modelo} (${carro.ano}) - R$ ${carro.preco_diario}/dia\n`;
+                });
+                
+                alert(lista);
+            } catch (error) {
+                alert('Erro ao listar carros');
+            }
+        }
+        
+        function alugarCarro() {
+            const carroId = prompt('ID do carro para alugar:');
+            const dataInicio = prompt('Data início (YYYY-MM-DD):');
+            const dataFim = prompt('Data fim (YYYY-MM-DD):');
+            
+            if (carroId && dataInicio && dataFim) {
+                fetch('/api/alugueis', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+                    body: `carro_id=${carroId}&data_inicio=${dataInicio}&data_fim=${dataFim}`
+                })
+                .then(r => r.json())
+                .then(data => alert(data.message || data.error))
+                .catch(() => alert('Erro ao alugar carro'));
+            }
+        }
+        
+        async function listarUsuarios() {
+            try {
+                const response = await fetch('/api/usuarios');
+                const usuarios = await response.json();
+                
+                let lista = 'USUÁRIOS CADASTRADOS:\n\n';
+                usuarios.forEach(user => {
+                    lista += `ID: ${user.id} - ${user.nome} (${user.email}) - Role: ${user.role}\n`;
+                });
+                
+                alert(lista);
+            } catch (error) {
+                alert('Erro ao listar usuários');
+            }
+        }
+    </script>
+</body>
+
 </html>

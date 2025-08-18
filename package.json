@@ -1,0 +1,11 @@
+{
+  "name": "sistema-locadora-carros",
+  "version": "1.0.0",
+  "description": "Sistema de Locadora de Carros em PHP",
+  "scripts": {
+    "build": "echo 'Build completed'",
+    "start": "php -S localhost:8000 -t public"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}

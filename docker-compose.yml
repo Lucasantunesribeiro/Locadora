@@ -1,0 +1,19 @@
+services:
+  app:
+    build: .
+    ports:
+      - "8000:80"
+    volumes:
+      - ./database:/var/www/html/database
+    environment:
+      - APP_ENV=development
+      - APP_URL=http://localhost:8000
+    restart: unless-stopped
+    
+  # Opcional: Adminer para gerenciar o banco
+  adminer:
+    image: adminer
+    ports:
+      - "8080:8080"
+    depends_on:
+      - app
