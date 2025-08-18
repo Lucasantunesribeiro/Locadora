@@ -26,8 +26,15 @@ RUN mkdir -p /var/www/html/database && \
     chmod -R 755 /var/www/html && \
     chmod 777 /var/www/html/database
 
+# Inicializar banco de dados
+RUN cd /var/www/html && php database/init.php
+
 # Configurar PHP para produção
 RUN cp "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
+
+# Configurar variáveis de ambiente para produção
+ENV APP_ENV=production
+ENV APP_DEBUG=false
 
 EXPOSE 80
 

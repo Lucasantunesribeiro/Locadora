@@ -5,6 +5,7 @@ services:
     buildCommand: |
       php -v
       composer install --no-dev --optimize-autoloader
+      php database/init.php
     startCommand: php -S 0.0.0.0:$PORT -t public
     envVars:
       - key: APP_ENV
