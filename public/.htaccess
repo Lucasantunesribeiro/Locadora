@@ -5,16 +5,20 @@ RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.*)$ index.php [QSA,L]
 
-# Configurações de segurança
-Header always set X-Content-Type-Options nosniff
-Header always set X-Frame-Options DENY
-Header always set X-XSS-Protection "1; mode=block"
+# Configurações de segurança (apenas se o módulo headers estiver disponível)
+<IfModule mod_headers.c>
+    Header always set X-Content-Type-Options nosniff
+    Header always set X-Frame-Options DENY
+    Header always set X-XSS-Protection "1; mode=block"
+</IfModule>
 
-# Configurações de cache para assets estáticos
-<FilesMatch "\.(css|js|png|jpg|jpeg|gif|ico|svg)$">
-    ExpiresActive On
-    ExpiresDefault "access plus 1 month"
-</FilesMatch>
+# Configurações de cache para assets estáticos (apenas se o módulo expires estiver disponível)
+<IfModule mod_expires.c>
+    <FilesMatch "\.(css|js|png|jpg|jpeg|gif|ico|svg)$">
+        ExpiresActive On
+        ExpiresDefault "access plus 1 month"
+    </FilesMatch>
+</IfModule>
 
 # Desabilitar listagem de diretórios
 Options -Indexes

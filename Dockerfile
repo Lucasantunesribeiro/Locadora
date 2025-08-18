@@ -9,8 +9,10 @@ RUN apt-get update && apt-get install -y \
 # Instalar extensões PHP necessárias
 RUN docker-php-ext-install pdo pdo_sqlite
 
-# Habilitar mod_rewrite
+# Habilitar módulos necessários do Apache
 RUN a2enmod rewrite
+RUN a2enmod headers
+RUN a2enmod expires
 
 # Configurar document root
 ENV APACHE_DOCUMENT_ROOT /var/www/html/public
